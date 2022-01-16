@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+     
+     
+     {% if pet.photo_url %}
+    <img class="img-fluid" src="{{pet.photo_url}}" alt="{{pet.name}}">
+     {% endif %}
+     <p class="text-center">{{pet.name}}-{{pet.species}}
+         {% if pet.age %}
+            {{pet.age}} year's old
+         {% endif %}
+
+     </p>
+        <div class="row justify-content-center"> 
+            <div class="col-md-8">
+            <form method="POST">
+            {{ form.hidden_tag() }}
+            
+            {{form.photo_url.label}}
+            {{form.photo_url(class_="form-control")}}
+            {% for url_err in form.photo_url.errors %}
+                <small class="form-text">{{url_err}}</small>
+            {% endfor %}
+
+            {{form.notes.label}}
+            {{form.notes(class_="form-control")}}
+            {% for note_err in form.notes.errors %}
+                <small class="form-text">{{note_err}}</small>
+            {% endfor %}
+
+            {{form.available.label}}
+            {{form.available(class_="form-check")}}
+
+            <button class="btn btn-success btn-lg mt-3">Submit</button>
+            </form>
+        </div>
+    
+    
+
+    
+{% endblock %}

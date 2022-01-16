@@ -1,12 +1,29 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1> this working</h1>
-</body>
-</html>
+{% extends 'base.html' %}
+
+{% block content %}
+        <h1>Pets</h1>
+        <div class="row">
+            {% for pet in pets %}
+            <div class="col-md-3">
+                {% if pet.photo_url %}
+                <img class="img-fluid" src="{{pet.photo_url}}" alt="{{pet.name}}">
+                {% endif %}
+                
+                <p>
+                <a href="/{{pet.id}}">{{pet.name}}</a>
+                {% if pet.available %}
+                <b>is available</b>
+                
+                {% else %}
+                not available
+                {% endif %}
+                </p>
+                
+            </div>
+        
+            {% endfor%}
+            
+        </div>
+        <a class="btn btn-info" href="/add">Add a Pet</a>
+
+{% endblock %}
